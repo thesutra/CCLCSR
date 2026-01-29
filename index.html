@@ -11,46 +11,54 @@
     <style>
         :root {
             --ccl-blue: #004b8d;
-            --ccl-green: #008f4c; /* Updated to match CCL Logo Green */
+            --ccl-green: #008f4c; 
             --ccl-gold: #d4af37;
         }
         body { font-family: 'Poppins', sans-serif; }
         
         /* Navbar Styling */
-        .navbar { border-bottom: 3px solid var(--ccl-green); }
-        .navbar-brand img { height: 50px; width: auto; }
-        .brand-text { line-height: 1.2; }
-        .brand-title { font-weight: 700; color: var(--ccl-blue); font-size: 1.25rem; }
-        .brand-subtitle { font-size: 0.75rem; color: #555; letter-spacing: 1px; }
-        .nav-link { font-weight: 500; color: #333; transition: color 0.3s; }
+        .navbar { border-bottom: 3px solid var(--ccl-green); background: white; }
+        
+        /* LOGO FIX: Ensuring it is visible */
+        .ccl-logo { 
+            height: 55px; 
+            width: auto; 
+            margin-right: 15px; 
+        }
+
+        .nav-link { font-weight: 500; color: #333; }
         .nav-link:hover { color: var(--ccl-green); }
         .nav-link.active { color: var(--ccl-blue) !important; font-weight: 700; }
 
-        /* Hero Section with Dark Overlay */
+        /* Hero Section */
         .hero-section {
             background: linear-gradient(rgba(0, 50, 100, 0.7), rgba(0, 80, 50, 0.6)), url('https://images.unsplash.com/photo-1595856552667-28d84252a530?q=80&w=1920');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 160px 0 100px; /* Extra padding for navbar space */
+            padding: 120px 0;
             text-align: center;
         }
 
-        /* Stats Cards - Floating Effect */
-        .stats-container { margin-top: -60px; position: relative; z-index: 2; }
+        /* Stats Cards - VISIBILITY FIX: Removed negative margin and added solid background */
+        .stats-section { 
+            background-color: #f8f9fa; 
+            padding-top: 50px; 
+            padding-bottom: 50px; 
+        }
         .stat-card {
+            background: white;
             border: none;
             border-top: 5px solid var(--ccl-blue);
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background: white;
-            transition: transform 0.3s ease;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            height: 100%;
+            transition: transform 0.2s;
         }
-        .stat-card:hover { transform: translateY(-10px); }
+        .stat-card:hover { transform: translateY(-5px); }
         
         /* Buttons */
-        .btn-ccl-primary { background-color: var(--ccl-blue); color: white; border: none; }
-        .btn-ccl-primary:hover { background-color: #003366; color: white; }
         .btn-ccl-warning { background-color: var(--ccl-gold); color: #000; border: none; }
         .btn-ccl-warning:hover { background-color: #bfa13f; }
 
@@ -58,13 +66,13 @@
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="https://upload.wikimedia.org/wikipedia/en/2/23/Central_Coalfields_Limited_logo.png" alt="CCL Logo" class="me-3">
-                <div class="brand-text d-none d-sm-block">
-                    <div class="brand-title">CCL CSR</div>
-                    <div class="brand-subtitle">CENTRAL COALFIELDS LIMITED</div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/2/23/Central_Coalfields_Limited_logo.png" alt="CCL Logo" class="ccl-logo">
+                <div class="d-none d-sm-block lh-1">
+                    <div class="fw-bold text-primary" style="font-size: 1.2rem;">CCL CSR</div>
+                    <div class="small text-muted" style="font-size: 0.75rem;">CENTRAL COALFIELDS LIMITED</div>
                 </div>
             </a>
             
@@ -79,15 +87,15 @@
                     <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="financials.html">Reports</a></li>
                     <li class="nav-item ms-lg-3">
-                        <a href="projects.html" class="btn btn-ccl-primary btn-sm px-4 rounded-pill">View Impact</a>
+                        <a href="projects.html" class="btn btn-primary btn-sm px-4 rounded-pill">View Impact</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="hero-section">
-        <div class="container">
+    <header class="hero-section mt-5">
+        <div class="container pt-4">
             <div class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold">Jharkhand: A Land of Hope</div>
             <h1 class="display-3 fw-bold mb-3">Fuelling Sustainable Growth</h1>
             <p class="lead mb-4 mx-auto opacity-75" style="max-width: 800px;">
@@ -95,42 +103,46 @@
             </p>
             <div class="d-flex justify-content-center gap-3">
                 <a href="projects.html" class="btn btn-ccl-warning btn-lg fw-bold px-5 rounded-pill shadow">Explore Initiatives</a>
-                <a href="https://www.youtube.com/watch?v=XiUx3svZ4TA" target="_blank" class="btn btn-outline-light btn-lg rounded-pill"><i class="fas fa-play-circle me-2"></i> Watch Our Story</a>
             </div>
         </div>
     </header>
 
-    <section class="stats-container pb-5">
+    <section class="stats-section">
         <div class="container">
             <div class="row g-4 text-center">
-                <div class="col-md-3 col-6">
-                    <div class="card stat-card p-4 h-100">
+                
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="stat-card">
                         <div class="text-primary mb-2"><i class="fas fa-hand-holding-heart fa-2x"></i></div>
                         <h2 class="fw-bold mb-0">₹ 81.11 Cr</h2>
-                        [cite_start]<p class="text-muted small">CSR Spend (FY25) [cite: 1458]</p>
+                        <p class="text-muted small">CSR Spend (FY25)</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-6">
-                    <div class="card stat-card p-4 h-100" style="border-top-color: var(--ccl-green);">
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="stat-card" style="border-top-color: var(--ccl-green);">
                         <div class="text-success mb-2"><i class="fas fa-utensils fa-2x"></i></div>
                         <h2 class="fw-bold mb-0">50,000+</h2>
-                        [cite_start]<p class="text-muted small">Daily Meals (Akshaya Patra) [cite: 2072]</p>
+                        <p class="text-muted small">Daily Meals (Akshaya Patra)</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-6">
-                    <div class="card stat-card p-4 h-100" style="border-top-color: var(--ccl-gold);">
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="stat-card" style="border-top-color: var(--ccl-gold);">
                         <div class="text-warning mb-2"><i class="fas fa-medal fa-2x"></i></div>
                         <h2 class="fw-bold mb-0">1,809</h2>
-                        [cite_start]<p class="text-muted small">Medals Won (JSSPS) [cite: 2113]</p>
+                        <p class="text-muted small">Medals Won (JSSPS)</p>
                     </div>
                 </div>
-                <div class="col-md-3 col-6">
-                    <div class="card stat-card p-4 h-100" style="border-top-color: #dc3545;">
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="stat-card" style="border-top-color: #dc3545;">
                         <div class="text-danger mb-2"><i class="fas fa-heartbeat fa-2x"></i></div>
                         <h2 class="fw-bold mb-0">45,000</h2>
-                        [cite_start]<p class="text-muted small">Child Heart Screenings [cite: 2128]</p>
+                        <p class="text-muted small">Child Heart Screenings</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -145,19 +157,15 @@
             <div class="card mb-5 border-0 shadow-sm overflow-hidden">
                 <div class="row g-0">
                     <div class="col-md-6">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80" class="img-fluid h-100 w-100" style="object-fit: cover;" alt="State Library">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80" class="img-fluid h-100 w-100" style="object-fit: cover; min-height: 300px;" alt="State Library">
                     </div>
                     <div class="col-md-6 d-flex align-items-center bg-white">
-                        <div class="card-body p-5">
+                        <div class="card-body p-4 p-lg-5">
                             <span class="badge bg-primary mb-2">Education Infrastructure</span>
                             <h3 class="fw-bold">5,000-Seater State Library</h3>
                             <p class="text-muted">
                                 A ₹65.25 Crore initiative at Ranchi University. This 6-floor, green-certified facility is designed to be a temple of knowledge for the youth of Jharkhand.
                             </p>
-                            <ul class="list-unstyled mb-4">
-                                [cite_start]<li class="mb-2"><i class="fas fa-check text-success me-2"></i> Finishing work in progress (6th Floor) [cite: 2067]</li>
-                                [cite_start]<li><i class="fas fa-check text-success me-2"></i> Fully modern amenities & EURON Reading Halls [cite: 2065]</li>
-                            </ul>
                             <a href="projects.html" class="btn btn-outline-primary">Read Project Details</a>
                         </div>
                     </div>
@@ -168,72 +176,36 @@
                 <div class="col-lg-6 order-lg-2">
                     <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80" class="img-fluid rounded-4 shadow" alt="Healthcare">
                 </div>
-                <div class="col-lg-6 order-lg-1 pe-lg-5">
+                <div class="col-lg-6 order-lg-1 pe-lg-5 mt-4 mt-lg-0">
                     <h5 class="text-danger fw-bold"><i class="fas fa-heartbeat me-2"></i> HEALTHCARE</h5>
                     <h2 class="fw-bold display-6">Nanha Sa Dil</h2>
                     <p class="lead text-muted">Healing Little Hearts, Securing Future.</p>
                     <p>
-                        A sensitive initiative to screen 45,000 children for Congenital Heart Disease (CHD) across 5 districts. We provide <strong>100% free surgery</strong>, travel, and post-op care for 500 identified children.
+                        A sensitive initiative to screen 45,000 children for Congenital Heart Disease (CHD). We provide <strong>100% free surgery</strong>, travel, and post-op care.
                     </p>
-                    <div class="d-flex gap-4 mt-4">
-                        <div>
-                            <h4 class="fw-bold mb-0">16,000+</h4>
-                            [cite_start]<small class="text-muted">Children Screened [cite: 2132]</small>
-                        </div>
-                        <div>
-                            <h4 class="fw-bold mb-0">27</h4>
-                            [cite_start]<small class="text-muted">Surgeries Completed [cite: 2132]</small>
-                        </div>
-                    </div>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section class="py-5 bg-dark text-white text-center">
-        <div class="container">
-            <h2 class="fw-bold mb-3">Transparency is our Core Value</h2>
-            <p class="lead text-white-50 mb-4">We maintain open records of every rupee spent. View our detailed expenditure reports.</p>
-            <a href="financials.html" class="btn btn-light btn-lg fw-bold px-5 rounded-pill">View Financials</a>
-        </div>
-    </section>
-
-    <footer class="bg-white pt-5 pb-3 border-top">
+    <footer class="bg-dark text-white pt-5 pb-3">
         <div class="container">
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/2/23/Central_Coalfields_Limited_logo.png" height="40" alt="Logo">
-                        <span class="fw-bold ms-2 text-primary">CCL CSR</span>
-                    </div>
-                    <p class="text-muted small">Central Coalfields Limited (A Miniratna Company)<br>Darbhanga House, Ranchi - 834001</p>
+                    <h5 class="fw-bold text-white mb-3">CCL CSR</h5>
+                    <p class="small text-white-50">Central Coalfields Limited (A Miniratna Company)<br>Darbhanga House, Ranchi - 834001</p>
                 </div>
-                <div class="col-md-2">
-                    <h6 class="fw-bold mb-3">Quick Links</h6>
-                    <ul class="list-unstyled small text-muted">
-                        <li><a href="index.html" class="text-decoration-none text-muted">Home</a></li>
-                        <li><a href="projects.html" class="text-decoration-none text-muted">Projects</a></li>
-                        <li><a href="financials.html" class="text-decoration-none text-muted">Reports</a></li>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-white mb-3">Transparency Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="financials.html" class="text-white-50 text-decoration-none">Expenditure Reports</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">CSR Policy</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <h6 class="fw-bold mb-3">Grievance Redressal</h6>
-                    <p class="small text-muted">We are listening. For any CSR related queries or grievances:</p>
-                    <a href="https://www.centralcoalfields.in/ccl_cmplnt/mobileauth1.php" target="_blank" class="btn btn-outline-primary btn-sm">Lodge Complaint</a>
+                <div class="col-md-4">
+                    <p class="small text-white-50">&copy; 2026 Central Coalfields Limited.<br>Prototype for Internal Review</p>
                 </div>
-                <div class="col-md-3">
-                    <h6 class="fw-bold mb-3">Connect</h6>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-primary"><i class="fab fa-twitter fa-lg"></i></a>
-                        <a href="#" class="text-primary"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-danger"><i class="fab fa-youtube fa-lg"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="text-center small text-muted">
-                &copy; 2026 Central Coalfields Limited. All Rights Reserved. | Prototype for Internal Review
             </div>
         </div>
     </footer>
