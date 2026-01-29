@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Reports | CCL CSR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --ccl-blue: #004b8d;
+            --ccl-gold: #d4af37;
+            --ccl-green: #2E8B57;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        .navbar-brand { font-weight: bold; color: var(--ccl-blue) !important; }
+        .nav-link { color: #333; font-weight: 500; }
+        .nav-link.active { color: var(--ccl-blue) !important; font-weight: 700; border-bottom: 2px solid var(--ccl-gold); }
+        
+        .header-section {
+            background-color: var(--ccl-blue);
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); }
+        .table-custom th { background-color: var(--ccl-blue); color: white; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-industry"></i> CCL CSR <span class="badge bg-warning text-dark" style="font-size: 0.5em; vertical-align: top;">FY 24-25</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us & Policy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Our Projects</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="financials.html">Financial Reports</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-primary text-white ms-2 px-3" href="https://www.centralcoalfields.in/ccl_cmplnt/mobileauth1.php" target="_blank">Grievance</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header-section text-center">
+        <div class="container">
+            <h1 class="fw-bold">Financial Performance & Transparency</h1>
+            <p class="lead opacity-75">Detailed expenditure report for Financial Year 2024-25</p>
+        </div>
+    </header>
+
+    <div class="container mb-5">
+        
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card p-4 text-center border-start border-5 border-success">
+                    <h5 class="text-muted">Total CSR Expenditure</h5>
+                    <h2 class="display-5 fw-bold text-success">₹ 81.11 Cr</h2>
+                    <p class="small text-muted mb-0">FY 2024-25 Actual Spend [cite: 29]</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center border-start border-5 border-warning">
+                    <h5 class="text-muted">Mandated CSR Target</h5>
+                    <h2 class="display-5 fw-bold text-warning">₹ 62.26 Cr</h2>
+                    <p class="small text-muted mb-0">2% of Avg Net Profit [cite: 25]</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card p-4 text-center border-start border-5 border-primary">
+                    <h5 class="text-muted">Utilization Rate</h5>
+                    <h2 class="display-5 fw-bold text-primary">130%</h2>
+                    <p class="small text-muted mb-0">Exceeded Mandated Target</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-white fw-bold">Sector-Wise Distribution (In Crores)</div>
+                    <div class="card-body">
+                        <canvas id="sectorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-white fw-bold">Target vs. Actual Spending</div>
+                    <div class="card-body d-flex align-items-center">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-5">
+            <div class="card-header bg-white fw-bold d-flex justify-content-between align-items-center">
+                <span>Detailed Sector Expenditure Report</span>
+                <button class="btn btn-sm btn-outline-dark"><i class="fas fa-download"></i> Export PDF</button>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-custom table-striped table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Sector / Theme</th>
+                                <th class="text-end">Expenditure (₹ in Cr)</th>
+                                <th class="text-end">% of Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-book-reader text-primary me-2"></i> Education & Livelihood</td>
+                                <td class="text-end fw-bold">37.71</td>
+                                <td class="text-end">46.5%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-heartbeat text-danger me-2"></i> Nutrition, Health & Sanitation</td>
+                                <td class="text-end fw-bold">24.42</td>
+                                <td class="text-end">30.1%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-running text-warning me-2"></i> Promotion of Sports</td>
+                                <td class="text-end fw-bold">5.67</td>
+                                <td class="text-end">7.0%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-tractor text-success me-2"></i> Rural Development</td>
+                                <td class="text-end fw-bold">4.88</td>
+                                <td class="text-end">6.0%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-tree text-success me-2"></i> Environment & Animal Welfare</td>
+                                <td class="text-end fw-bold">2.92</td>
+                                <td class="text-end">3.6%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-hands-helping text-info me-2"></i> Empowerment & Welfare</td>
+                                <td class="text-end fw-bold">1.66</td>
+                                <td class="text-end">2.0%</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-landmark text-secondary me-2"></i> Art, Culture & Heritage</td>
+                                <td class="text-end fw-bold">0.06</td>
+                                <td class="text-end">0.1%</td>
+                            </tr>
+                            <tr>
+                                <td>Other Misc. Activities</td>
+                                <td class="text-end fw-bold">3.79</td>
+                                <td class="text-end">4.7%</td>
+                            </tr>
+                            <tr class="table-dark">
+                                <td><strong>Grand Total</strong></td>
+                                <td class="text-end"><strong>81.11</strong></td>
+                                <td class="text-end"><strong>100%</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-info border-0 shadow-sm">
+            <i class="fas fa-info-circle me-2"></i> <strong>Note:</strong> Administrative overheads for the year stood at ₹3.67 Crore[cite: 390], which is within the permissible limit of 5%. Excess amount spent (approx ₹19.63 Cr) is available for set-off in succeeding financial years[cite: 404].
+        </div>
+
+    </div>
+
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">CCL CSR</h5>
+                    <p class="small text-white-50">Central Coalfields Limited (A Miniratna Company)<br>Darbhanga House, Ranchi - 834001</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold mb-3">Transparency Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-white-50">CSR Policy PDF</a></li>
+                        <li><a href="#" class="text-white-50">Annual Action Plan 2024-25</a></li>
+                        <li><a href="#" class="text-white-50">Impact Assessment Reports</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <p class="small text-white-50">&copy; 2026 Central Coalfields Limited.<br>Prototype for Internal Review</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // Pie Chart: Sector Wise Spending
+        const ctxSector = document.getElementById('sectorChart').getContext('2d');
+        new Chart(ctxSector, {
+            type: 'doughnut',
+            data: {
+                labels: ['Education & Livelihood', 'Health & Sanitation', 'Sports', 'Rural Dev', 'Environment', 'Others'],
+                datasets: [{
+                    data: [37.71, 24.42, 5.67, 4.88, 2.92, 5.51], // Data from 
+                    backgroundColor: ['#004b8d', '#dc3545', '#ffc107', '#198754', '#20c997', '#6c757d'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'right' }
+                }
+            }
+        });
+
+        // Bar Chart: Target vs Actual
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        new Chart(ctxBudget, {
+            type: 'bar',
+            data: {
+                labels: ['FY 2024-25'],
+                datasets: [
+                    {
+                        label: 'Mandated Target (2%)',
+                        data: [62.26], // Data from [cite: 25]
+                        backgroundColor: '#ffc107',
+                        borderRadius: 5
+                    },
+                    {
+                        label: 'Actual Expenditure',
+                        data: [81.11], // Data from [cite: 29]
+                        backgroundColor: '#004b8d',
+                        borderRadius: 5
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Amount in Crores (₹)' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
